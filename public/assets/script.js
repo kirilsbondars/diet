@@ -1,7 +1,3 @@
-$("#meal").click(function () {
-
-});
-
 (function() {
     'use strict';
     window.addEventListener('load', function() {
@@ -36,23 +32,17 @@ $("#mealChoicer").change(function () {
     };
 })
 
-$("#feelingChoicer").change(function () {
-    if(this.value == "0") {
-        $("#feeling form button").before('<div class="form-group" id="customFeeling">\n' +
-            '<label for="">Enter you feeling</label>\n' +
-            '<input type="text" class="form-control" id="feeling" required>\n' +
-            '</div>');
-    } else {
-        $("#customFeeling").remove();
-    };
-})
-
 $("#addFart").click(function () {
     $("#addFart").attr('disabled','disabled');
     $.get("staff/farts/add.php", function(data, status){
-        alertify.notify('We have received your fart', 'success', 3);
-        setTimeout(function () {
-            $("#addFart").removeAttr('disabled');
-        }, 500);
+        console.log(data);
+        if (data === "") {
+            alertify.success('We have received your fart', 3);
+        } else {
+            alertify.error("We have not received your fart!", 3);
+        }
     });
+    setTimeout(function () {
+        $("#addFart").removeAttr('disabled');
+    }, 500);
 })

@@ -2,6 +2,8 @@
 /**
  * This is header
  */
+
+require_once ("../src/initialize.php")
 ?>
 
 <?php echo

@@ -1,4 +1,4 @@
-<?php include_once("../src/shared/header.php") ?>
+<?php require_once ("../src/shared/header.php");?>
 <div class="container">
     <div class="row">
         <div class="col-3">
@@ -24,7 +24,18 @@
     <div class="tab-content" id="myTabContent">
 
         <div class="tab-pane fade show active" id="farts" role="tabpanel" aria-labelledby="farts-tab">
-            <button type="button" class="btn btn-danger btn-block btn-lg" id="addFart">Add fart</button>
+            <button type="button" class="btn btn-danger btn-block btn-lg mb-4" id="addFart">Add fart</button>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Time</th>
+                        <th scope="col">Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php require_once ("staff/farts/show.php");?>
+                </tbody>
+            </table>
         </div>
 
         <div class="tab-pane fade" id="meal" role="tabpanel" aria-labelledby="meal-tab">
