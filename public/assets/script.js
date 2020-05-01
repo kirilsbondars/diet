@@ -34,7 +34,7 @@ $("#mealChoicer").change(function () {
 
 $("#addFart").click(function () {
     $("#addFart").attr('disabled','disabled');
-    $.get("staff/farts/add.php", function(data, status){
+    $.get("staff/farts/add.php?user_id=1", function(data, status){
         console.log(data);
         if (data === "") {
             alertify.success('We have received your fart', 3);
@@ -46,3 +46,4 @@ $("#addFart").click(function () {
         $("#addFart").removeAttr('disabled');
     }, 500);
 })
+
