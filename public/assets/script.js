@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    updateFartsTable();
+    updateMealsList()
+});
+
 (function() {
     'use strict';
     window.addEventListener('load', function() {
@@ -16,34 +21,59 @@
     }, false);
 })();
 
-$("#mealChoicer").change(function () {
-    if(this.value == "0") {
-        $("#customMeal").html(
-            '<div class="form-row">\n' +
-            '<div class="col-12 mb-3">\n' +
-            '<label for="mealName">Enter meal you ate</label>\n' +
-            '<input type="text" class="form-control" id="mealName" required>\n' +
-            '<div class="valid-feedback">Looks good!</div>\n' +
-            '<div class="invalid-feedback">Please, Fill the gap</div>\n' +
-            '</div>\n' +
-            '</div>');
+function updateFartsTable() {
+    $.get("staff/farts/show.php?user_id=1", function(data, status) {
+        $("#fartsTable").html(data);
+    });
+}
+
+function updateMealsList() {
+    $.get("staff/meals/show.php?user_id=1", function(data, status) {
+        $("#mealsChoicer").append('<option value="">Choose...</option>' + '<option value="0">My choice</option>');
+        $("#mealsChoicer").append(data);
+    });
+}
+
+$("#fartsTime #addFarts").click(function () {
+    $("#addFarts").attr('disabled','disabled');
+
+    if($("#currentTime").prop("checked")) {
+        $.get("staff/farts/add_now.php?user_id=1", function(data, status) {
+            if (data === "") {
+                alertify.success('We have received your fart', 3);
+                updateFartsTable();
+            } else {
+                alertify.error("We have not received your fart!", 3);
+            }
+        });
     } else {
-        $("#customMeal").html("");
-    };
+        let dateTime = $("#date").val() + " " + $("#time").val();
+        $.get("staff/farts/add.php?user_id=1&date_time=" + dateTime, function(data, status) {
+            if (data === "") {
+                alertify.success('We have received your fart', 3);
+                updateFartsTable();
+            } else {
+                alertify.error("We have not received your fart!", 3);
+            }
+        });
+    }
+
+    setTimeout(function () {
+        $("#addFarts").removeAttr('disabled');
+    }, 500);
 })
 
-$("#addFart").click(function () {
-    $("#addFart").attr('disabled','disabled');
-    $.get("staff/farts/add.php?user_id=1", function(data, status){
-        console.log(data);
-        if (data === "") {
-            alertify.success('We have received your fart', 3);
-        } else {
-            alertify.error("We have not received your fart!", 3);
-        }
-    });
-    setTimeout(function () {
-        $("#addFart").removeAttr('disabled');
-    }, 500);
+$("#currentTime").change(function () {
+    if ($(this).prop("checked") === false) {
+        $("#date").prop("disabled", false);
+        $("#time").prop("disabled", false);
+    } else {
+        $("#date").prop("disabled", true);
+        $("#time").prop("disabled", true);
+    }
+})
+
+$("#meal #addMeal").click(function () {
+    console.log("ddd");
 })
 

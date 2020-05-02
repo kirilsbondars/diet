@@ -17,7 +17,14 @@ class DatabaseObject
     }
 
     static public function find_by_sql_single($sql) {
-        $result = self::find_by_ID($sql);
-        return $result->fetch_assoc();
+        $result = self::find_by_sql($sql);
+        return array_values($result->fetch_assoc())[0];
+    }
+
+    static public function run_sql($sql) {
+        $result = self::$database->query($sql);
+        if(!$result) {
+            exit("Database query failed.");
+        }
     }
 }
