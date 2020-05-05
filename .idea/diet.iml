@@ -11,5 +11,11 @@
     <orderEntry type="library" name="default" level="application" />
     <orderEntry type="library" name="semantic" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="popper.js" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="alertify" level="application" />
+    <orderEntry type="library" name="default" level="application" />
+    <orderEntry type="library" name="semantic" level="application" />
   </component>
 </module>

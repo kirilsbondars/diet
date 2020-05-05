@@ -6,6 +6,13 @@ $result = Meal::get_meals_per_days($user_id);
 
 if($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo $row["date"]. " " . $row["meals"] . " | ";
+        if($row["date"] == date("Y-m-d"))
+            echo '<tr class="table-success">';
+        else
+            echo '<tr>';
+
+        echo '<td>' . $row["date"]. '</td>
+              <td>' . $row["meals"]. '</td>
+              </tr>';
     }
 }
