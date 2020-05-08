@@ -2,14 +2,19 @@
 require_once ("../../src/initialize.php");
 date_default_timezone_set("Europe/Riga");
 
-$farts = Fart::get_farts_per_days(1);
-$meals = Meal::get_meals_per_days(1);
+$user_id = correct_input($_GET["user_id"]);
+$result = DatabaseObject::find_by_sql("CALL show_statistics($user_id)");
 
-$date = date("Y-m-d", strtotime("-1 days"));
-echo $date;
+if($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        if($row["date_farts"] == date("Y-m-d"))
+            echo '<tr class="table-success">';
+        else
+            echo '<tr>';
 
-if ($farts->num_rows > 0 || $meals->num_rows > 0) {
-    while($rowf = $farts->fetch_assoc() || $rowm = $meals->fetch_assoc()) {
-
+        echo '<td>' . $row["date_farts"]. '</td>
+              <td>' . $row["farts"]. '</td>
+              <td>' . $row["meals"]. '</td>  
+              </tr>';
     }
 }

@@ -44,26 +44,14 @@
                     <div class="form-row" id="manualTime" style="display: none">
                         <div class="form-group col-sm-6">
                             <label for="date">Date: </label>
-                            <input type="date" id="date" class="form-control" value="<?php echo date("Y-m-d");?>" disabled="true">
+                            <input type="date" id="date" class="form-control" value="<?php echo date("Y-m-d");?>">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="time">Select a time:</label>
-                            <input type="time" id="time" class="form-control" value="<?php echo date("H:i");?>" disabled="true">
+                            <input type="time" id="time" class="form-control" value="<?php echo date("H:i");?>">
                         </div>
                     </div>
                 </form>
-
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Time</th>
-                        <th scope="col">Number</th>
-                    </tr>
-                    </thead>
-                    <tbody id="fartsTable">
-
-                    </tbody>
-                </table>
             </div>
             <!---------->
 
@@ -81,26 +69,43 @@
                         <input type="text" name="new_meal" id="newMeal" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-success float-right mb-3" id="submitMeal">Add meal</button>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="currentTimeMeal" name="current_time" checked>
+                            <label class="form-check-label" for="currentTimeMeal">Current time
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row" id="manualTimeMeal" style="display: none">
+                        <div class="form-group col-sm-6">
+                            <label for="dateMeal">Date: </label>
+                            <input type="date" id="dateMeal" name="date" class="form-control" value="<?php echo date("Y-m-d");?>" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="timeMeal">Select a time:</label>
+                            <input type="time" id="timeMeal" name="time" class="form-control" value="<?php echo date("H:i");?>" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg float-right mb-3" id="submitMeal">Add meal</button>
                 </form>
-
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col" style="min-width: 110px">Date</th>
-                        <th scope="col">Meals</th>
-                    </tr>
-                    </thead>
-                    <tbody id="mealsTable">
-
-                    </tbody>
-                </table>
             </div>
             <!---------->
 
             <!--Statistics-->
             <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
-                <p>nwfn</p>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" style="min-width: 110px">Date</th>
+                        <th scope="col">Farts</th>
+                        <th scope="col">Meals</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table">
+
+                    </tbody>
+                </table>
             </div>
             <!-------------->
 

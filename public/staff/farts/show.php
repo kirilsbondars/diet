@@ -12,7 +12,7 @@ if ($result->num_rows > 0) {
             echo '<tr>';
 
         echo '<td>' . $row["date"]. '</td>
-              <td>' . $row["number_all"]. '</td>
+              <td>' . $row["number_of_farts"]. '</td>
               </tr>';
     }
 }
