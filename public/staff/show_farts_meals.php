@@ -1,6 +1,5 @@
 <?php
 require_once ("../../src/initialize.php");
-date_default_timezone_set("Europe/Riga");
 
 $user_id = correct_input($_GET["user_id"]);
 $result = DatabaseObject::find_by_sql("CALL show_statistics($user_id)");

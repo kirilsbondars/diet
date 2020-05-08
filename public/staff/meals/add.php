@@ -1,6 +1,5 @@
 <?php
 require_once ("../../../src/initialize.php");
-date_default_timezone_set("Europe/Riga");
 
 $date_time = correct_input($_GET["date"]) . " " . correct_input($_GET["time"]);
 $meal_id = correct_input($_GET["meal_id"]);

@@ -14,3 +14,5 @@ require_once ("functions.php");
 
 $database = db_connect();
 DatabaseObject::set_database($database);
+
+date_default_timezone_set("Europe/Riga");
