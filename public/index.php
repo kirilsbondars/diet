@@ -1,5 +1,5 @@
 <?php require_once("../src/initialize.php");?>
-<?php include(SHARED_PATH . '/header.php');?>
+<?php include('../src/shared/header.php');?>
 
     <div class="container">
         <div class="row">
@@ -111,4 +111,4 @@
         </div>
     </div>
 
-<?php include(SHARED_PATH . '/footer.php');?>
+<?php include('../src/shared/footer.php');?>
