@@ -1,17 +1,31 @@
 <?php
-
+require_once ("DatabaseObject.php");
 
 class Fart extends DatabaseObject
 {
-    static public function add_fart_now($user_id) {
-        self::run_sql("CALL add_fart_now($user_id);");
+    private $user_id, $date_time;
+
+    function _construct($user_id) {
+        $this->user_id = $user_id;
     }
 
-    static public function add_fart($data_time, $user_id) {
-        self::run_sql("CALL add_fart('" . $data_time . "', $user_id)");
+    public function set_user_id($user_id) {
+        $this->user_id = $user_id;
     }
 
-    static public function get_farts_per_days($user_id) {
-        return self::find_by_sql("SELECT dates.date AS date, COUNT(*) AS number_of_farts FROM farts JOIN dates ON farts.date = dates.id WHERE farts.user = $user_id GROUP BY farts.date ORDER BY dates.date DESC");
+    public function set_current_date_time() {
+        $this->date_time = date("Y-m-d H:i:s");
+    }
+
+    public function set_date_time($date_time) {
+        $this->date_time = $date_time;
+    }
+
+    public function add_fart() {
+        if(!empty($this->date_time)) {
+            echo $this->date_time . " " . $this->user_id . " ";
+            self::run_sql("CALL add_fart('$this->date_time', $this->user_id)");
+        } else
+            exit("Date time error");
     }
 }

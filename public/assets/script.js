@@ -1,8 +1,10 @@
 /* AFTER PAGE HAS LOADED*/
 $(document).ready(function() {
     updateMealsList();
-    //updateTable();
+    updateTable();
 });
+
+let updateStatistics = false;
 /*-------*/
 
 /* FARTS */
@@ -33,7 +35,7 @@ $("#fartsTime #addFarts").click(function () {
     $.get("staff/farts/add.php?user_id=1&date_time=" + dateTime, function(data, status) {
         if (data === "") {
             alertify.success('We have received your fart', 3);
-            //updateFartsTable();
+            updateStatistics = true;
         } else {
             alertify.error("We have not received your fart!", 3);
         }
@@ -44,7 +46,6 @@ $("#fartsTime #addFarts").click(function () {
     }, 500);
 
     actionCurrentTimeFarts();
-
 })
 /*------*/
 
@@ -103,6 +104,7 @@ $("#mealFrom").submit(function (event) {
             }
 
             actionCurrentTimeMeal();
+            updateStatistics = true;
         } else {
             alertify.error("We have not received your meal!", 3);
         }
@@ -118,6 +120,9 @@ function updateTable() {
 }
 
 $("#statistics-tab").click(function () {
-    updateTable();
+    if (updateStatistics) {
+        updateTable();
+        updateStatistics = false;
+    }
 })
 /*----------*/

@@ -27,4 +27,12 @@ class DatabaseObject
             exit("Database query failed.");
         }
     }
+
+    /*static public function run_sql($sql) {
+        $result = self::$database->query($sql);
+        if(!$result) {
+            exit(array("success" => false, "error_description" => "Database query failed."));
+        }
+        return array("success" => true,"result" => $result);
+    }*/
 }

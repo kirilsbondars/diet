@@ -4,7 +4,11 @@ require_once ("../../../src/initialize.php");
 $date_time = correct_input($_GET["date_time"]);
 $user_id = correct_input($_GET["user_id"]);
 
+$farts = new Fart(1);
+
 if (empty($date_time))
-    Fart::add_fart(date("Y-m-d H-i-s"), $user_id);
+    $farts->set_current_date_time();
 else
-    Fart::add_fart($date_time, $user_id);
+    $farts->set_date_time($date_time);
+
+$farts->add_fart();
